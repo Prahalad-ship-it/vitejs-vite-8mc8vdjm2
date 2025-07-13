@@ -1,4 +1,5 @@
-import Leaderboard from "/Leaderboard.jsx";
+import React from "react";
+import Leaderboard from "./Leaderboard";
 
 function App() {
   return (

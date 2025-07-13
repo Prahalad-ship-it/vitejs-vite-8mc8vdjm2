@@ -1,6 +1,4 @@
-import Leaderboard from "./components/Leaderboard.jsx"; // also okay
-
-// src/components/Leaderboard.jsx
+import React from "react";
 
 export default function Leaderboard() {
   return (
