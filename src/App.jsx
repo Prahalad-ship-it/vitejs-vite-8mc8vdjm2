@@ -36,7 +36,7 @@ function Leaderboard({ onLeadChange }) {
     // Simulate a lead change after 2 seconds
     const timer = setTimeout(() => {
       setLeader(players[1]);
-      onLeadChange(🔥 New leader: ${players[1].name}!);
+      onLeadChange(`🔥 New leader: ${players[1].name}!`);
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -48,9 +48,9 @@ function Leaderboard({ onLeadChange }) {
       {players.map((player, index) => (
         <div
           key={index}
-          className={p-2 ${
+          className={`p-2 ${
             player.name === leader.name ? "bg-yellow-200 font-bold" : ""
-          }}
+          }`}
         >
           {player.name} — {player.score} pts
         </div>
