@@ -1,16 +1,22 @@
+import React, { useEffect, useState, useRef } from "react";
+
 function Leaderboard({ onLeadChange }) {
   const [leaderIndex, setLeaderIndex] = useState(0);
-  const leader = players[leaderIndex];
+  const intervalRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const nextIndex = (leaderIndex + 1) % players.length;
-      setLeaderIndex(nextIndex);
-      onLeadChange(`🔥 New leader: ${players[nextIndex].name}!`);
-    }, 3000); // Change leader every 3 seconds
+    intervalRef.current = setInterval(() => {
+      setLeaderIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % players.length;
+        onLeadChange(`🔥 New leader: ${players[nextIndex].name}!`);
+        return nextIndex;
+      });
+    }, 3000);
 
-    return () => clearInterval(interval);
-  }, [leaderIndex, onLeadChange]);
+    return () => clearInterval(intervalRef.current);
+  }, [onLeadChange]);
+
+  const leader = players[leaderIndex];
 
   return (
     <div className="bg-white p-6 rounded-xl shadow-md text-center w-80">
@@ -28,4 +34,3 @@ function Leaderboard({ onLeadChange }) {
     </div>
   );
 }
-
